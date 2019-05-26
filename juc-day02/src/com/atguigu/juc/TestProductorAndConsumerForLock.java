@@ -10,10 +10,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TestProductorAndConsumerForLock {
 
 	public static void main(String[] args) {
-		Clerk clerk = new Clerk();
+		ClerkForLock clerk = new ClerkForLock();
 
-		Productor pro = new Productor(clerk);
-		Consumer con = new Consumer(clerk);
+		ProductorForLock pro = new ProductorForLock(clerk);
+		ConsumerForLock con = new ConsumerForLock(clerk);
 
 		new Thread(pro, "生产者 A").start();
 		new Thread(con, "消费者 B").start();
@@ -24,7 +24,7 @@ public class TestProductorAndConsumerForLock {
 
 }
 
-class Clerk {
+class ClerkForLock{
 	private int product = 0;
 
 	private Lock lock = new ReentrantLock();
@@ -80,11 +80,11 @@ class Clerk {
 }
 
 // 生产者
-class Productor implements Runnable {
+class ProductorForLock implements Runnable {
 
-	private Clerk clerk;
+	private ClerkForLock clerk;
 
-	public Productor(Clerk clerk) {
+	public ProductorForLock(ClerkForLock clerk) {
 		this.clerk = clerk;
 	}
 
@@ -103,11 +103,11 @@ class Productor implements Runnable {
 }
 
 // 消费者
-class Consumer implements Runnable {
+class ConsumerForLock implements Runnable {
 
-	private Clerk clerk;
+	private ClerkForLock clerk;
 
-	public Consumer(Clerk clerk) {
+	public ConsumerForLock(ClerkForLock clerk) {
 		this.clerk = clerk;
 	}
 

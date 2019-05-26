@@ -21,23 +21,23 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 			③更新值  B
  * 			当且仅当 V == A 时， V = B; 否则，不会执行任何操作。
  */
-public class TestAtomicDemo {
+public class TestAtomicDemo01 {
 
     public static void main(String[] args) {
-        AtomicDemo ad = new AtomicDemo();
+        AtomicDemo01 ad = new AtomicDemo01();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             new Thread(ad).start();
         }
     }
 
 }
 
-class AtomicDemo implements Runnable {
+class AtomicDemo01 implements Runnable {
 
-    private volatile int serialNumber = 0;
+//    private volatile int serialNumber = 0;
 
-//	private AtomicInteger serialNumber = new AtomicInteger(0);
+	private AtomicInteger serialNumber = new AtomicInteger(0);
 
     @Override
     public void run() {
@@ -48,14 +48,14 @@ class AtomicDemo implements Runnable {
         }
         System.out.println(getSerialNumber());
     }
-//
-//    public int getSerialNumber() {
-//        return serialNumber.getAndIncrement();
-//    }
 
     public int getSerialNumber() {
-        return serialNumber++;
+        return serialNumber.getAndIncrement();
     }
+
+//    public int getSerialNumber() {
+//        return serialNumber++;
+//    }
 
 
 }
