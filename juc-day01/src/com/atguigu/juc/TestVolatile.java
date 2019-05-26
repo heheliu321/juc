@@ -14,12 +14,11 @@ public class TestVolatile {
         ThreadDemo td = new ThreadDemo();
         new Thread(td).start();
 
+        //问题抛出，main线程希望调用
         while (true) {
-            synchronized (td) {
-                if (td.isFlag()) {
-                    System.out.println("------------------");
-                    break;
-                }
+            if (td.isFlag()) {
+                System.out.println("------------------");
+                break;
             }
         }
 
@@ -29,7 +28,10 @@ public class TestVolatile {
 
 class ThreadDemo implements Runnable {
 
-    private volatile boolean flag = false;
+
+    private boolean flag = false;
+
+//    private volatile boolean flag = false;
 
     @Override
     public void run() {
