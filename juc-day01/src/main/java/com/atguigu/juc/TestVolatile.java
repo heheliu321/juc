@@ -30,7 +30,7 @@ class ThreadDemo implements Runnable {
 
 
     private boolean flag = false;
-
+    //这块使用volatie可以保证主线程可见flag的变化
 //    private volatile boolean flag = false;
 
     @Override
