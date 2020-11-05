@@ -1,4 +1,4 @@
-package com.atguigu.juc;
+package juc_day02.com.atguigu.juc;
 
 /*
  * 生产者和消费者案例

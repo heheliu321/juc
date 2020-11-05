@@ -1,4 +1,4 @@
-package com.atguigu.juc;
+package juc_day02.com.atguigu.juc;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

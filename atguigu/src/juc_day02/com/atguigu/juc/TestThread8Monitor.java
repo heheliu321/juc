@@ -1,4 +1,4 @@
-package com.atguigu.juc;
+package juc_day02.com.atguigu.juc;
 
 /*
  * 题目：判断打印的 "one" or "two" ？

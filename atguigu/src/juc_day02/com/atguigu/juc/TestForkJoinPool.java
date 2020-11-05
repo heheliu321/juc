@@ -1,4 +1,4 @@
-package com.atguigu.juc;
+package juc_day02.com.atguigu.juc;
 
 import java.time.Duration;
 import java.time.Instant;
