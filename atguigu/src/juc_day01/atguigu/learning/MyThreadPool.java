@@ -1,4 +1,4 @@
-package juc_day01.atguigu.sso;
+package juc_day01.atguigu.learning;
 
 /**
  * @author n00444323
@@ -8,50 +8,36 @@ package juc_day01.atguigu.sso;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class MyThread {
+public class MyThreadPool {
 
-    static CountDownLatch latch = new CountDownLatch(3);
+    static CountDownLatch latch = new CountDownLatch(1);
 
     public static void main(String[] args) {
-        new ThreadA().start();
 
-        new Thread(new ThreadB()).start();
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
 
-        //实现Callable接口
-        ThreadC threadC = new ThreadC(1, 2);
-        FutureTask<Integer> task = new FutureTask<>(threadC);
-        new Thread(task).start();
+        Future<?> result1 = executorService.submit(new ThreadB());
+
+        Future<?> result2 = executorService.submit(new ThreadC(1, 2));
 
         try {
-            //这个是阻塞的方法，直到有结果返回
-            Integer result = task.get();
-            System.out.println(result);
-
+            System.out.println(result2.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } finally {
-            latch.countDown();
         }
 
         try {
             latch.await();
-            System.out.println(Thread.currentThread().getName() + "=========over");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
 
-    static class ThreadA extends Thread {
-
-        @Override
-        public void run() {
-            System.out.println(Thread.currentThread().getName());
-            latch.countDown();
-        }
     }
 
     static class ThreadB implements Runnable {

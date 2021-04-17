@@ -24,35 +24,35 @@ public class TestVolatile {
 
     }
 
-}
 
-class ThreadDemo implements Runnable {
+    static class ThreadDemo implements Runnable {
 
 
-    private boolean flag = false;
+        private boolean flag = false;
 
 //    private volatile boolean flag = false;
 
-    @Override
-    public void run() {
+        @Override
+        public void run() {
 
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+            }
+
+            flag = true;
+
+            System.out.println("flag=" + isFlag());
+
         }
 
-        flag = true;
+        public boolean isFlag() {
+            return flag;
+        }
 
-        System.out.println("flag=" + isFlag());
+        public void setFlag(boolean flag) {
+            this.flag = flag;
+        }
 
     }
-
-    public boolean isFlag() {
-        return flag;
-    }
-
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
-
 }

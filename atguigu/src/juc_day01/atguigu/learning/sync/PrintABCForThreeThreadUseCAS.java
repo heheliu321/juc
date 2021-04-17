@@ -1,4 +1,4 @@
-package juc_day01.atguigu.sso.sync;
+package juc_day01.atguigu.learning.sync;
 
 /**
  * @author n00444323
